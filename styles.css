@@ -1239,3 +1239,37 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   .metrics-strip { grid-template-columns: 1fr; }
   .metric:last-child { grid-column: auto; }
 }
+
+
+/* ── Language switcher ── */
+.lang-switch {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.lang-switch li a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px 6px;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.lang-switch li a:hover { color: #fff; }
+.lang-switch li.active a {
+  color: var(--accent);
+}
+.lang-switch li + li {
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  padding-left: 0.5rem;
+}
+
+@media (max-width: 720px) {
+  /* Hide language switcher on small screens — surface it in the banner instead */
+  .header-social .lang-switch { display: none; }
+}
