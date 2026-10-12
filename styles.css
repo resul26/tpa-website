@@ -842,3 +842,165 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   .metric { padding: 1.75rem 1.5rem; }
   .metrics-strip { grid-template-columns: repeat(2, 1fr); }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   V2 UPGRADES — Floating glassmorphism nav, premium typography,
+   glass CTAs, animated scroll cue.
+   To revert: delete everything below this banner OR `git revert`.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Type stack refinement — prefer Plus Jakarta Sans for display */
+:root {
+  --font-display: "Plus Jakarta Sans", "Poppins", "sofia-pro", -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ───── 1. FLOATING GLASSMORPHISM NAV ───── */
+.site-header {
+  top: 20px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(92%, 1280px);
+  height: auto;
+  padding: 14px 28px;
+  background: rgba(15, 23, 32, 0.55);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  gap: 1.5rem;
+}
+/* White logo/wordmark on dark glass */
+.site-header .logo { color: #fff; }
+.site-header .main-nav a { color: rgba(255, 255, 255, 0.82); }
+.site-header .main-nav a:hover { color: #fff; }
+.site-header .main-nav a.active { color: #fff; }
+.site-header .header-social { color: rgba(255, 255, 255, 0.72); }
+.site-header .header-social a:hover { color: #fff; }
+.site-header .menu-toggle { color: #fff; }
+.site-header .menu-toggle .burger,
+.site-header .menu-toggle .burger::before,
+.site-header .menu-toggle .burger::after { background: #fff; }
+
+/* Offset all scroll-snap content because nav now overlays it */
+.scroll-container { margin-top: 0; }
+.slide { min-height: 100vh; }
+.slide.intro { padding-top: 0; }
+.metrics-strip { scroll-snap-margin-top: 0; }
+
+/* ───── 2. PREMIUM TYPOGRAPHY ───── */
+.kicker, .kicker.dark {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.kicker { color: #fff; }
+.kicker.dark { color: var(--accent); }
+
+.hero-headline {
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.1rem;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 780px;
+  margin: 0 auto 2rem;
+  letter-spacing: 0.005em;
+}
+
+.panel-head { letter-spacing: -0.015em; font-weight: 700; }
+.panel-sub { letter-spacing: 0.04em; font-weight: 600; text-transform: none; }
+
+/* ───── 3. GLASS / HIGH-CONTRAST CTAs ───── */
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary {
+  background: var(--accent);
+  box-shadow: 0 4px 14px rgba(240, 90, 40, 0.25);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(240, 90, 40, 0.45);
+}
+/* Ghost → frosted glass */
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+}
+.btn-ghost-light { /* used on CTA banner */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+/* Header RFP button stays tight */
+.btn-header {
+  padding: 10px 18px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  border-radius: 4px;
+}
+
+/* ───── 4. ANIMATED SCROLL INDICATOR ───── */
+.scroll-cue {
+  animation: cueBounce 2.4s ease-in-out infinite;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.scroll-cue span { animation: cue 2s infinite; }
+@keyframes cueBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+  40% { transform: translate(-50%, -8px); }
+  60% { transform: translate(-50%, -4px); }
+}
+
+/* ───── EXTRA POLISH — glass the panel-inner so video/image breathes through ───── */
+.panel-inner {
+  background: rgba(20, 24, 30, 0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* ───── Responsive adjustments for floating nav ───── */
+@media (max-width: 960px) {
+  .site-header {
+    top: 12px;
+    width: calc(100% - 24px);
+    padding: 12px 20px;
+    border-radius: 10px;
+  }
+}
