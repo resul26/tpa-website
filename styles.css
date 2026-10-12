@@ -1004,3 +1004,238 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
     border-radius: 10px;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE FIXES (≤ 720px) — comprehensive overhaul
+   - Full-bleed panels (no floating card look)
+   - Anchored safe offsets for fixed header
+   - Better headline wrapping (no "Trans-/Pacific")
+   - Single-line CTAs, cleaner rhythm
+   - 1-col credential list, aligned cred grid rows
+   To revert: delete everything below this banner
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 720px) {
+  /* ── Header: slim, single-line, sticky ── */
+  .site-header {
+    top: 8px;
+    width: calc(100% - 16px);
+    padding: 10px 14px;
+    border-radius: 10px;
+    gap: 0.75rem;
+  }
+  .site-header .logo-word {
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .site-header .logo-mark span { width: 3px; height: 14px; }
+  .site-header .menu-toggle {
+    font-size: 0;
+    gap: 0;
+    padding: 6px;
+  }
+  .site-header .menu-toggle .burger,
+  .site-header .menu-toggle .burger::before,
+  .site-header .menu-toggle .burger::after { background: #fff; }
+  .site-header .header-social { display: none; }
+  .site-header .btn-header { display: none; } /* RFP lives in hero instead */
+
+  /* ── Scroll container / slide heights ── */
+  .slide { min-height: 100svh; } /* small-viewport-unit avoids iOS URL-bar jump */
+
+  /* Give in-page anchors breathing room below fixed header */
+  section[id] { scroll-margin-top: 72px; }
+
+  /* ── Hero: force line break before "Trans-Pacific" ── */
+  .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    margin-bottom: 0.9rem;
+  }
+  .hero-headline {
+    font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    margin-bottom: 0.9rem;
+    overflow-wrap: break-word;
+  }
+  .hero-headline br { display: none; }
+  /* Force "We Are" / "Trans-Pacific Alliance" line split */
+  .hero-headline { max-width: 16ch; margin-inline: auto; }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 auto 1.4rem;
+    max-width: 34ch;
+    padding: 0 0.5rem;
+  }
+  .hero-sub { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Full-width single-line CTAs, evenly sized */
+  .cta-row.center,
+  .cta-row {
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: stretch;
+    width: 100%;
+    max-width: 340px;
+    margin: 1.4rem auto 0;
+  }
+  .cta-row .btn {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Hide desktop mouse scroll-cue entirely on touch */
+  .scroll-cue { display: none; }
+
+  /* ── Panels: full-bleed, no card card-on-card look ── */
+  .slide { padding: 84px 0 40px; align-items: flex-start; }
+  .panel-inner,
+  .panel-inner.left,
+  .panel-inner.right,
+  .panel-inner.wide {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 1.25rem;
+    background: rgba(15, 19, 25, 0.62); /* darker for legibility */
+    border: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .panel-head {
+    font-size: clamp(1.6rem, 7.5vw, 2.1rem);
+    margin-bottom: 0.7rem;
+  }
+  .panel-head.display {
+    font-size: clamp(1.9rem, 8.5vw, 2.4rem);
+  }
+  .panel-sub {
+    font-size: 0.95rem;
+    margin: -0.2rem 0 0.9rem;
+  }
+  .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.9rem; }
+
+  .pull-quote {
+    font-size: 1.05rem;
+    padding-left: 0.9rem;
+    margin: 0.9rem 0 1rem;
+  }
+
+  /* Feature / hub lists */
+  .feature-list li, .hub-list li { padding: 0.75rem 0; font-size: 0.95rem; }
+  .feature-list strong { font-size: 0.98rem; }
+
+  /* Credential list — stacked rows on narrow */
+  .cred-list {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    margin: 1rem 0 1.2rem;
+  }
+  .cred-list li {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.92rem;
+  }
+  .cred-list li:last-child { border-bottom: 0; }
+  .cred-code { white-space: normal; font-size: 0.74rem; line-height: 1.3; }
+
+  /* ── Metrics strip — stacked pairs ── */
+  .metrics-strip {
+    grid-template-columns: 1fr 1fr;
+    scroll-snap-align: start;
+  }
+  .metrics-strip::before { display: none; }
+  .metric { padding: 1.4rem 0.9rem; }
+  .metric-value { font-size: 2rem; }
+  .metric-tag { font-size: 0.7rem; letter-spacing: 0.14em; }
+  .metric-label { font-size: 0.78rem; max-width: 180px; }
+  /* 5th metric (100% Western Specs) spans full row */
+  .metric:last-child { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* ── Capabilities (editorial table) ── */
+  .capabilities { padding: 64px 1.25rem; }
+  .kicker.dark { font-size: 0.7rem; letter-spacing: 0.22em; }
+  .panel-head.dark { font-size: clamp(1.7rem, 7.5vw, 2.1rem); }
+  .cap-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 1.2rem 0;
+  }
+  .cap-name { gap: 0.75rem; }
+  .cap-name h3 { font-size: 1.05rem; line-height: 1.3; }
+  .cap-row p { font-size: 0.92rem; line-height: 1.55; }
+
+  /* ── Why cards ── */
+  .why { padding: 64px 1.25rem; }
+  .why-grid { gap: 1rem; }
+  .why-card { padding: 1.4rem 1.2rem; }
+
+  /* ── CTA banner ── */
+  .cta-banner { padding: 64px 1.25rem; }
+  .cta-head { font-size: clamp(1.7rem, 8vw, 2.2rem); line-height: 1.2; }
+  .cta-banner p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .btn-large { padding: 15px 24px; font-size: 0.78rem; }
+
+  /* ── Slide video on mobile: keep video as background, but let it peek ──
+     The panel sits lower so a sliver of video shows at the top of the
+     section, hinting at the motion behind. Panel keeps glassy backdrop. */
+  .slide-video { padding-top: 96px; }
+  .slide-video .slide-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* ── Footer ── */
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 1.25rem;
+  }
+  .footer-nav {
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 2rem 1.25rem 2.5rem;
+  }
+  .footer-legal { font-size: 0.72rem; padding: 0.9rem 1rem; }
+}
+
+/* Helper: nowrap span + mobile-only break */
+.nowrap { white-space: nowrap; }
+.mobile-br { display: none; }
+@media (max-width: 720px) {
+  .mobile-br { display: inline; }
+}
+
+/* Very small phones — further trims */
+@media (max-width: 380px) {
+  .site-header { padding: 8px 12px; }
+  .site-header .logo-word { font-size: 0.88rem; }
+  .hero-headline { font-size: clamp(1.7rem, 9.5vw, 2.2rem); }
+  .metrics-strip { grid-template-columns: 1fr; }
+  .metric:last-child { grid-column: auto; }
+}
