@@ -1284,3 +1284,12 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   /* Hide language switcher on small screens — surface it in the banner instead */
   .header-social .lang-switch { display: none; }
 }
+
+/* Footer inline note (used in Quality Governance column) */
+.footer-note {
+  color: var(--ink-mute);
+  font-size: 0.85rem;
+  font-weight: 300;
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
