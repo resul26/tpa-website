@@ -1258,8 +1258,19 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   color: rgba(255, 255, 255, 0.6);
   padding: 4px 6px;
   text-transform: uppercase;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
+.lang-switch .flag {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18);
+  transform: translateY(-0.5px);
+}
+.lang-switch li a:hover .flag { transform: translateY(-0.5px) scale(1.05); }
 .lang-switch li a:hover { color: #fff; }
 .lang-switch li.active a {
   color: var(--accent);
