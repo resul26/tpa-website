@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Explicitly welcome Baiduspider
+User-agent: Baiduspider
+Allow: /
+
+Sitemap: https://transpacificaliance.com/sitemap.xml
