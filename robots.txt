@@ -5,4 +5,4 @@ Allow: /
 User-agent: Baiduspider
 Allow: /
 
-Sitemap: https://transpacificaliance.com/sitemap.xml
+Sitemap: https://transpacificalliance.com/sitemap.xml
