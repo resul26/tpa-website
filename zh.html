@@ -83,7 +83,7 @@
     <div class="metric">
       <div class="metric-value">3</div>
       <div class="metric-tag">大制造基地</div>
-      <div class="metric-label">广州 · 深圳 · 南通</div>
+      <div class="metric-label">东莞 · 广东 · 南通</div>
     </div>
     <div class="metric">
       <div class="metric-value">20<span class="plus">+</span></div>
@@ -296,6 +296,10 @@
     if (bg) s.style.setProperty('background-image', bg);
   });
   const container = document.querySelector('.scroll-container');
+  const headerEl = document.querySelector('.site-header');
+  container.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', container.scrollTop > 24);
+  }, { passive: true });
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
   document.querySelectorAll('video.hero-bg-video, video.slide-bg-video').forEach(video => {

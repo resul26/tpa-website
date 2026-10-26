@@ -71,7 +71,7 @@
     <div class="metric">
       <div class="metric-value">3</div>
       <div class="metric-tag">Grandes Instalações</div>
-      <div class="metric-label">Guangzhou · Shenzhen · Nantong</div>
+      <div class="metric-label">Dongguan · Guangdong · Nantong</div>
     </div>
     <div class="metric">
       <div class="metric-value">20<span class="plus">+</span></div>
@@ -285,6 +285,10 @@
   });
 
   const container = document.querySelector('.scroll-container');
+  const headerEl = document.querySelector('.site-header');
+  container.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', container.scrollTop > 24);
+  }, { passive: true });
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
 
