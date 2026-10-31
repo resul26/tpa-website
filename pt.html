@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trans-Pacific Alliance — Portal de Fabricação Pesada</title>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=20261031e">
+<link rel="stylesheet" href="styles.css?v=20261031f">
 <link rel="alternate" hreflang="en" href="index.html">
 <link rel="alternate" hreflang="pt" href="es.html">
 <link rel="alternate" hreflang="pt" href="pt.html">
@@ -322,9 +322,15 @@
 
   const container = document.querySelector('.scroll-container');
   const headerEl = document.querySelector('.site-header');
-  container.addEventListener('scroll', () => {
-    headerEl.classList.toggle('scrolled', container.scrollTop > 24);
-  }, { passive: true });
+  // The header belongs to the top of the page: slide it away once scrolled
+  const syncHeader = () => {
+    const y = container.scrollTop;
+    headerEl.classList.toggle('scrolled', y > 24);
+    headerEl.classList.toggle('header-hidden', y > 80 && !headerEl.classList.contains('menu-open'));
+  };
+  container.addEventListener('scroll', syncHeader, { passive: true });
+  window.addEventListener('resize', syncHeader, { passive: true });
+  syncHeader();
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
 
@@ -352,6 +358,7 @@
       menuToggle.setAttribute('aria-expanded', String(open));
       mobileMenu.hidden = !open;
       headerEl.classList.toggle('menu-open', open);
+      syncHeader();
     };
     menuToggle.addEventListener('click', () => setMenu(mobileMenu.hidden));
     mobileMenu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });

@@ -8,7 +8,7 @@
 <meta name="keywords" content="重型装备制造,压力容器,ASME U认证,钢结构,EPCM,中国制造,工艺管道,中海油,矿业设备">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="fonts-zh.css">
-<link rel="stylesheet" href="styles.css?v=20261031e">
+<link rel="stylesheet" href="styles.css?v=20261031f">
 <link rel="alternate" hreflang="en" href="index.html">
 <link rel="alternate" hreflang="es" href="es.html">
 <link rel="alternate" hreflang="pt" href="pt.html">
@@ -332,9 +332,15 @@
   });
   const container = document.querySelector('.scroll-container');
   const headerEl = document.querySelector('.site-header');
-  container.addEventListener('scroll', () => {
-    headerEl.classList.toggle('scrolled', container.scrollTop > 24);
-  }, { passive: true });
+  // The header belongs to the top of the page: slide it away once scrolled
+  const syncHeader = () => {
+    const y = container.scrollTop;
+    headerEl.classList.toggle('scrolled', y > 24);
+    headerEl.classList.toggle('header-hidden', y > 80 && !headerEl.classList.contains('menu-open'));
+  };
+  container.addEventListener('scroll', syncHeader, { passive: true });
+  window.addEventListener('resize', syncHeader, { passive: true });
+  syncHeader();
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
   document.querySelectorAll('video.hero-bg-video, video.slide-bg-video').forEach(video => {
@@ -358,6 +364,7 @@
       menuToggle.setAttribute('aria-expanded', String(open));
       mobileMenu.hidden = !open;
       headerEl.classList.toggle('menu-open', open);
+      syncHeader();
     };
     menuToggle.addEventListener('click', () => setMenu(mobileMenu.hidden));
     mobileMenu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
