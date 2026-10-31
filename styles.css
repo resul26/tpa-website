@@ -83,6 +83,8 @@ h1, h2, h3, h4, h5 {
   letter-spacing: -0.01em;
 }
 .logo.small { font-size: 1.1rem; }
+.logo-word { white-space: nowrap; }
+.site-header .logo { flex-shrink: 0; }
 
 /* Logo mark — three angled vertical bars (rotated 90° from horizontal) */
 .logo-mark {
@@ -113,6 +115,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   color: var(--ink);
   padding: 6px 0;
+  white-space: nowrap;
 }
 .main-nav a.active {
   color: var(--ink);
@@ -478,7 +481,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 }
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   max-width: 1180px;
   margin: 0 auto;
@@ -511,6 +514,14 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   max-height: 100%;
   object-fit: contain;
 }
+.partner-logo.dual {
+  gap: 1rem;
+}
+.partner-logo.dual img {
+  max-width: 46%;
+  max-height: 44px;
+  flex: 0 1 auto;
+}
 .partner-name {
   max-width: 220px;
   color: var(--ink-mute);
@@ -527,6 +538,8 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   .partners-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .partner { min-height: 136px; padding: 1rem 0.6rem 0.85rem; }
   .partner-logo { height: 48px; }
+  .partner-logo.dual { gap: 0.5rem; }
+  .partner-logo.dual img { max-height: 30px; }
   .partner-name { font-size: 0.66rem; }
 }
 .footer-top {
@@ -1140,15 +1153,18 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
     margin-bottom: 0.9rem;
   }
   .hero-headline {
-    font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+    font-size: clamp(1.5rem, 7.6vw, 2rem);
     line-height: 1.1;
     letter-spacing: -0.018em;
     margin-bottom: 0.9rem;
     overflow-wrap: break-word;
   }
   .hero-headline br { display: none; }
-  /* Force "We Are" / "Trans-Pacific Alliance" line split */
-  .hero-headline { max-width: 16ch; margin-inline: auto; }
+  .hero-headline br.mobile-br { display: inline; }
+  /* Let the long brand line wrap instead of overflowing narrow phones */
+  .hero-headline .nowrap { white-space: normal; }
+  /* Chinese hero keeps the Latin brand line on one row */
+  html[lang="zh-CN"] .hero-headline { font-size: clamp(1.28rem, 6.8vw, 1.75rem); }
 
   .hero-sub {
     font-size: 0.95rem;
@@ -1318,7 +1334,9 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 @media (max-width: 380px) {
   .site-header { padding: 8px 12px; }
   .site-header .logo-word { font-size: 0.88rem; }
-  .hero-headline { font-size: clamp(1.7rem, 9.5vw, 2.2rem); }
+  .hero-center { padding: 0 1.1rem; }
+  .hero-headline { font-size: clamp(1.45rem, 7.6vw, 1.9rem); }
+  .cta-row .btn { font-size: 0.68rem; letter-spacing: 0.07em; padding: 13px 10px; }
   .metrics-strip { grid-template-columns: 1fr; }
   .metric:last-child { grid-column: auto; }
 }
@@ -1419,3 +1437,111 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 
 /* Never let anchor targets land behind the floating header */
 section[id], footer[id] { scroll-margin-top: 110px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE MENU PANEL — nav + language switcher on small screens
+   ═══════════════════════════════════════════════════════════════ */
+.mobile-menu { display: none; }
+
+@media (max-width: 960px) {
+  .site-header .menu-toggle { margin-left: auto; }
+  .site-header .menu-toggle .burger,
+  .site-header .menu-toggle .burger::before,
+  .site-header .menu-toggle .burger::after {
+    transition: transform 0.22s ease, top 0.22s ease, background-color 0.22s ease;
+  }
+  .site-header.menu-open .menu-toggle .burger { background: transparent; }
+  .site-header.menu-open .menu-toggle .burger::before { top: 0; transform: rotate(45deg); }
+  .site-header.menu-open .menu-toggle .burger::after  { top: 0; transform: rotate(-45deg); }
+
+  .mobile-menu {
+    display: block;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    padding: 0.35rem 0.95rem 1rem;
+    background: rgba(10, 15, 22, 0.96);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.42);
+    transform-origin: top center;
+    animation: menuIn 0.18s ease-out;
+  }
+  .mobile-menu[hidden] { display: none; }
+
+  .mobile-menu-nav { display: flex; flex-direction: column; }
+  .mobile-menu-nav a {
+    display: block;
+    padding: 0.8rem 0.25rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.86);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: color 0.18s ease;
+  }
+  .mobile-menu-nav a:hover,
+  .mobile-menu-nav a:focus-visible { color: #fff; }
+  .mobile-menu-nav a.active { color: var(--accent); }
+
+  .mobile-lang {
+    margin: 0.9rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    flex-wrap: wrap;
+    gap: 0.15rem;
+  }
+  .mobile-lang li + li {
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    padding-left: 0.15rem;
+  }
+  .mobile-lang li a { font-size: 0.74rem; color: rgba(255, 255, 255, 0.72); }
+  .mobile-lang li.active a { color: var(--accent); }
+
+  .mobile-menu-cta {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header fit: keep long-language nav on a single row ── */
+.header-social { flex-shrink: 0; }
+.header-social .btn-header { white-space: nowrap; }
+.lang-switch li a { white-space: nowrap; }
+
+@media (min-width: 961px) and (max-width: 1400px) {
+  .site-header { gap: 1rem; padding: 12px 20px; }
+  .site-header .logo { font-size: 1.05rem; }
+  .site-header .main-nav { gap: 1.1rem; font-size: 0.88rem; }
+  .site-header .header-social { gap: 0.6rem; }
+  .site-header .lang-switch { gap: 0.2rem; }
+  .site-header .lang-switch li a { font-size: 0.72rem; letter-spacing: 0.08em; gap: 4px; padding: 4px 4px; }
+  .site-header .lang-switch li + li { padding-left: 0.35rem; }
+  /* Flags alone keep the bar on one row; labels stay available to screen readers */
+  .site-header .lang-switch li a span {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+@media (min-width: 961px) and (max-width: 1180px) {
+  .site-header .header-social .btn-header { display: none; }
+}

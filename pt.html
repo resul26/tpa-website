@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trans-Pacific Alliance — Portal de Fabricação Pesada</title>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=20261031d">
+<link rel="stylesheet" href="styles.css?v=20261031e">
 <link rel="alternate" hreflang="en" href="index.html">
 <link rel="alternate" hreflang="pt" href="es.html">
 <link rel="alternate" hreflang="pt" href="pt.html">
@@ -38,7 +38,23 @@
     </ul>
   </div>
 
-  <button class="menu-toggle" aria-label="Menu">MENU <span class="burger"></span></button>
+  <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">MENU <span class="burger"></span></button>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+        <a href="#about">Sobre Nós</a>
+        <a href="#capabilities">Capacidades</a>
+        <a href="#quality">Governança de Qualidade</a>
+        <a href="#contact">Contato</a>
+    </nav>
+    <ul class="lang-switch mobile-lang" aria-label="Idioma">
+          <li><a href="index.html"><svg class="flag" viewBox="0 0 24 18" width="16" height="12" aria-hidden="true"><rect width="24" height="18" fill="#012169"/><path d="M0,0 L24,18 M24,0 L0,18" stroke="#fff" stroke-width="3"/><path d="M0,0 L24,18 M24,0 L0,18" stroke="#C8102E" stroke-width="1.5"/><path d="M12,0 V18 M0,9 H24" stroke="#fff" stroke-width="5"/><path d="M12,0 V18 M0,9 H24" stroke="#C8102E" stroke-width="3"/></svg><span>EN</span></a></li>
+          <li><a href="es.html"><svg class="flag" viewBox="0 0 24 18" width="16" height="12" aria-hidden="true"><rect width="24" height="18" fill="#AA151B"/><rect y="4.5" width="24" height="9" fill="#F1BF00"/><rect x="6" y="6.5" width="3" height="5" rx="0.5" fill="#AA151B"/><circle cx="7.5" cy="7.3" r="0.7" fill="#F1BF00"/></svg><span>ES</span></a></li>
+          <li class="active"><a href="pt.html" aria-current="true"><svg class="flag" viewBox="0 0 24 18" width="16" height="12" aria-hidden="true"><rect width="24" height="18" fill="#FF0000"/><rect width="9.6" height="18" fill="#046A38"/><circle cx="9.6" cy="9" r="3.4" fill="#FFE900" stroke="#000" stroke-width="0.3"/><circle cx="9.6" cy="9" r="1.5" fill="#FF0000"/><rect x="8.8" y="8.2" width="1.6" height="1.6" fill="#046A38"/></svg><span>PT</span></a></li>
+        
+          <li><a href="zh.html"><svg class="flag" viewBox="0 0 24 18" width="16" height="12" aria-hidden="true"><rect width="24" height="18" fill="#DE2910"/><polygon points="4.8,2 5.6,4.6 8.4,4.6 6.1,6.2 6.9,8.8 4.8,7.2 2.7,8.8 3.4,6.2 1.2,4.6 4,4.6" fill="#FFDE00"/><polygon points="11,1.5 11.35,2.2 12.1,2.2 11.5,2.75 11.7,3.5 11,3 10.3,3.5 10.5,2.75 9.9,2.2 10.65,2.2" fill="#FFDE00"/><polygon points="12.6,3.8 12.9,4.5 13.7,4.5 13.1,5 13.3,5.8 12.6,5.35 11.9,5.8 12.1,5 11.5,4.5 12.3,4.5" fill="#FFDE00"/><polygon points="12.6,6.8 12.9,7.5 13.7,7.5 13.1,8 13.3,8.8 12.6,8.35 11.9,8.8 12.1,8 11.5,7.5 12.3,7.5" fill="#FFDE00"/><polygon points="11,9.5 11.35,10.2 12.1,10.2 11.5,10.75 11.7,11.5 11,11 10.3,11.5 10.5,10.75 9.9,10.2 10.65,10.2" fill="#FFDE00"/></svg><span>中文</span></a></li>
+        </ul>
+    <a class="btn btn-primary mobile-menu-cta" href="#rfp">Enviar RFP</a>
+  </div>
 </header>
 
 <main class="scroll-container">
@@ -50,11 +66,11 @@
     </video>
     <div class="hero-center">
       <p class="kicker">Fabricação Pesada · Portal EPCM</p>
-      <h1 class="hero-headline">Nós Somos<br class="mobile-br"><span class="nowrap">a Trans-Pacific Alliance</span></h1>
+      <h1 class="hero-headline">Nós Somos <br class="mobile-br"><span class="nowrap">a Trans-Pacific Alliance</span></h1>
       <p class="hero-sub">Conectamos as principais empresas EPCM e desenvolvedores de projetos da América Latina à capacidade de fabricação pesada de primeira linha da Ásia — respaldados por governança de qualidade ocidental de nível máster.</p>
       <div class="cta-row center">
         <a href="#rfp" class="btn btn-primary">Enviar RFP / Escopo</a>
-        <a href="#capability" class="btn btn-ghost">Baixar Apresentação</a>
+        <a href="#capabilities" class="btn btn-ghost">Baixar Apresentação</a>
       </div>
       <a href="#metrics" class="scroll-cue" aria-label="Role para baixo"><span></span></a>
     </div>
@@ -201,23 +217,34 @@
 
   <!-- ═════════ PARTNERS ═════════ -->
   <section class="partners" aria-labelledby="partners-title">
-    <h2 class="partners-kicker" id="partners-title">Em parceria com</h2>
+    <h2 class="partners-kicker" id="partners-title">Em associação com</h2>
     <ul class="partners-grid">
       <li class="partner">
-        <span class="partner-logo"><img src="assets/partners/cnc.png" alt="Cámara Nacional de Comercio, Servicios y Turismo de Chile" loading="lazy"></span>
-        <span class="partner-name">Cámara Nacional de Comercio, Servicios y Turismo de Chile</span>
+        <span class="partner-logo"><img src="assets/partners/icha.png" alt="Instituto Chileno del Acero" loading="lazy"></span>
+        <span class="partner-name">Instituto Chileno del Acero</span>
       </li>
       <li class="partner">
-        <span class="partner-logo"><img src="assets/partners/cac-dark.svg" alt="Cámara Argentina de Comercio y Servicios" loading="lazy"></span>
-        <span class="partner-name">Cámara Argentina de Comercio y Servicios</span>
+        <span class="partner-logo"><img src="assets/partners/ias.png" alt="Instituto Argentino de Seguridad" loading="lazy"></span>
+        <span class="partner-name">Instituto Argentino de Seguridad</span>
+      </li>
+      <li class="partner">
+        <span class="partner-logo"><img src="assets/partners/camarco.png" alt="Cámara Argentina de la Construcción" loading="lazy"></span>
+        <span class="partner-name">Cámara Argentina de la Construcción</span>
       </li>
       <li class="partner">
         <span class="partner-logo"><img src="assets/partners/consejo-minero.png" alt="Consejo Minero de Chile" loading="lazy"></span>
         <span class="partner-name">Consejo Minero de Chile</span>
       </li>
       <li class="partner">
-        <span class="partner-logo"><img src="assets/partners/icha.png" alt="Instituto Chileno del Acero" loading="lazy"></span>
-        <span class="partner-name">Instituto Chileno del Acero</span>
+        <span class="partner-logo"><img src="assets/partners/caem.png" alt="Cámara Argentina de Empresas Mineras" loading="lazy"></span>
+        <span class="partner-name">Cámara Argentina de Empresas Mineras</span>
+      </li>
+      <li class="partner">
+        <span class="partner-logo dual">
+          <img src="assets/partners/cnc.png" alt="Cámara Nacional de Comercio, Servicios y Turismo de Chile" loading="lazy">
+          <img src="assets/partners/cac-dark.svg" alt="Cámara Argentina de Comercio y Servicios" loading="lazy">
+        </span>
+        <span class="partner-name">Câmaras de Comércio · Chile e Argentina</span>
       </li>
     </ul>
   </section>
@@ -243,8 +270,8 @@
         <h5>Empresa</h5>
         <a href="#about">Sobre a TPA</a>
         <a href="#quality">Governança de Qualidade</a>
-        <a href="#">Apresentação de Capacidades</a>
-        <a href="#">Carreiras</a>
+        <a href="#capabilities">Apresentação de Capacidades</a>
+        <a href="#contact">Carreiras</a>
       </div>
       <div class="col">
         <h5>Capacidades</h5>
@@ -316,6 +343,42 @@
     if (host) io.observe(host);
     else video.play().catch(()=>{});
   });
+
+  // Mobile menu panel (nav + language switcher)
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    const setMenu = open => {
+      menuToggle.setAttribute('aria-expanded', String(open));
+      mobileMenu.hidden = !open;
+      headerEl.classList.toggle('menu-open', open);
+    };
+    menuToggle.addEventListener('click', () => setMenu(mobileMenu.hidden));
+    mobileMenu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', e => {
+      if (!mobileMenu.hidden && !headerEl.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 960) setMenu(false); });
+  }
+
+  // Scroll-spy: highlight the current section in both navs
+  const navLinks = [...document.querySelectorAll('.main-nav a, .mobile-menu-nav a')];
+  const navHrefs = new Set(navLinks.map(a => a.getAttribute('href')));
+  const spySections = [...document.querySelectorAll('section[id], footer[id]')]
+    .filter(s => navHrefs.has('#' + s.id));
+  if (spySections.length) {
+    const spy = () => {
+      const probe = container.getBoundingClientRect().top + 140;
+      let current = null;
+      spySections.forEach(s => {
+        if (s.getBoundingClientRect().top <= probe) current = '#' + s.id;
+      });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));
+    };
+    container.addEventListener('scroll', spy, { passive: true });
+    spy();
+  }
 })();
 </script>
 </body>
