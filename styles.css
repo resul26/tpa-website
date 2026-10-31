@@ -577,6 +577,29 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 }
 .footer-grid .col a:hover { color: var(--accent); }
 
+/* Network locations */
+.network-item {
+  margin-bottom: 0.9rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--accent);
+}
+.network-item:last-child { margin-bottom: 0; }
+.network-city {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.network-desc {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--ink-mute);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .footer-legal {
   background: var(--footer-legal);
   color: #fff;
