@@ -761,6 +761,43 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   flex-shrink: 0;
 }
 
+/* Expertise list — two-column commercial competencies */
+.expertise-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.15rem 1.6rem;
+}
+.expertise-list li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.92);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.expertise-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.92em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+/* Leadership panel — denser rhythm keeps the box inside the viewport */
+#trade-leadership .panel-inner { padding: clamp(1.8rem, 3vw, 2.6rem); }
+#trade-leadership .panel-head { margin-bottom: 1rem; }
+#trade-leadership .pull-quote { margin: 1rem 0 1.1rem; }
+#trade-leadership .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.75rem; }
+#trade-leadership .panel-sub { margin: 0.2rem 0 0.6rem; }
+#trade-leadership .expertise-list { margin-top: 0.3rem; }
+#trade-leadership .expertise-list li { padding: 0.42rem 0 0.42rem 1.1rem; font-size: 0.92rem; }
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CAPABILITIES — white-bg editorial table
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -1251,6 +1288,10 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   }
   .cred-list li:last-child { border-bottom: 0; }
   .cred-code { white-space: normal; font-size: 0.74rem; line-height: 1.3; }
+
+  /* Expertise list — single column on narrow */
+  .expertise-list { grid-template-columns: 1fr; gap: 0; }
+  .expertise-list li { font-size: 0.92rem; padding: 0.6rem 0 0.6rem 1.1rem; }
 
   /* ── Metrics strip — stacked pairs ── */
   .metrics-strip {
