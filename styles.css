@@ -989,6 +989,11 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   line-height: 1.4;
   margin: 0 0 0.9rem;
 }
+.why-card-lead { grid-column: 1 / -1; }
+@media (min-width: 960px) {
+  .why-lead-body { columns: 2; column-gap: 3rem; }
+  .why-lead-body p { break-inside: avoid; }
+}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CTA BANNER — dark footer-banner with centered CTAs
