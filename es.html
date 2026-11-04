@@ -364,9 +364,26 @@
       return;
     }
     const host = video.closest('section');
+    const isHero = video.classList.contains('hero-bg-video');
+    let onScreen = true;
+    let frozen = false;
+    // Hold the hero on its open-ocean frame for 30s, then restart from the top
+    if (isHero) {
+      video.addEventListener('timeupdate', () => {
+        if (frozen || video.currentTime < 48) return;
+        frozen = true;
+        video.pause();
+        setTimeout(() => {
+          frozen = false;
+          video.currentTime = 0;
+          if (onScreen) video.play().catch(()=>{});
+        }, 30000);
+      });
+    }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { video.play().catch(()=>{}); }
+        onScreen = e.isIntersecting;
+        if (e.isIntersecting) { if (!frozen) video.play().catch(()=>{}); }
         else { video.pause(); }
       });
     }, { root: container, threshold: 0.05 });
