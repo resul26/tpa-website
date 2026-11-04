@@ -1379,6 +1379,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   .site-header { padding: 8px 12px; }
   .site-header .logo-word { font-size: 0.88rem; }
   .hero-center { padding: 0 1.1rem; }
+  .slide.intro .kicker { font-size: 0.66rem; letter-spacing: 0.16em; }
   .hero-headline { font-size: clamp(1.45rem, 7.6vw, 1.9rem); }
   .cta-row .btn { font-size: 0.68rem; letter-spacing: 0.07em; padding: 13px 10px; }
   .metrics-strip { grid-template-columns: 1fr; }
