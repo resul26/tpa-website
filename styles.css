@@ -822,8 +822,14 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   grid-area: 1 / 1;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  /* Some browsers ignore backface-visibility on 3D grid items, so hide the
+     rear face outright and hand over at the halfway point of the turn. */
+  transition: visibility 0s linear 0.15s;
 }
-.flip-face-back { transform: rotateY(180deg); }
+.flip-face-front { visibility: visible; }
+.flip-face-back { transform: rotateY(180deg); visibility: hidden; }
+.flip-card.is-flipped .flip-face-front { visibility: hidden; }
+.flip-card.is-flipped .flip-face-back { visibility: visible; }
 .flip-face .panel-inner {
   max-width: none;
   height: 100%;
@@ -866,6 +872,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 .flip-card.is-flipped .flip-toggle svg { transform: rotate(180deg); }
 @media (prefers-reduced-motion: reduce) {
   .flip-card-inner, .flip-toggle svg { transition: none; }
+  .flip-face { transition: none; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
