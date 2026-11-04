@@ -681,6 +681,8 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   font-size: 0.8rem;
   color: var(--accent);
   margin-top: 0.6rem;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 .metric-label {
   margin-top: 0.6rem;
@@ -928,7 +930,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WHY — 3-column cards on soft paper
+   WHY — advantage cards on soft paper
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .why {
   background: var(--paper-soft);
@@ -940,6 +942,9 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.75rem;
+}
+@media (min-width: 960px) {
+  .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .why-card {
   background: #fff;
@@ -974,6 +979,15 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
   font-size: 0.95rem;
   line-height: 1.58;
   margin: 0;
+}
+.why-card p + p { margin-top: 0.7rem; }
+.why-card .why-sub {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent);
+  line-height: 1.4;
+  margin: 0 0 0.9rem;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
