@@ -1028,8 +1028,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 /* Offset all scroll-snap content because nav now overlays it */
 .scroll-container { margin-top: 0; }
 .slide { min-height: 100vh; }
-/* Hero content sits directly under the floating header instead of being centred */
-.slide.intro { justify-content: flex-start; padding-top: calc(var(--header-h) + 32px); }
+.slide.intro { padding-top: 0; }
 .metrics-strip { scroll-snap-margin-top: 0; }
 
 /* ───── 2. PREMIUM TYPOGRAPHY ───── */
@@ -1238,7 +1237,6 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 
   /* ── Panels: full-bleed, no card card-on-card look ── */
   .slide { padding: 84px 0 40px; align-items: flex-start; }
-  .slide.intro { justify-content: flex-start; padding-top: 68px; }
   .panel-inner,
   .panel-inner.left,
   .panel-inner.right,
@@ -1833,7 +1831,7 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 
 /* Short phones: the taller hero copy must clear the floating header */
 @media (max-width: 720px) and (max-height: 780px) {
-  .slide.intro { padding-bottom: 16px; }
+  .slide.intro { padding-top: 68px; padding-bottom: 16px; }
   .slide.intro .kicker { margin-bottom: 0.65rem; }
   .slide.intro .hero-headline { margin-bottom: 0.6rem; }
   .slide.intro .hero-subhead { margin-bottom: 0.55rem; line-height: 1.3; }
