@@ -794,13 +794,79 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 }
 
 /* Leadership panel — denser rhythm keeps the box inside the viewport */
-#trade-leadership .panel-inner { padding: clamp(1.8rem, 3vw, 2.6rem); }
-#trade-leadership .panel-head { margin-bottom: 1rem; }
-#trade-leadership .pull-quote { margin: 1rem 0 1.1rem; }
-#trade-leadership .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.75rem; }
-#trade-leadership .panel-sub { margin: 0.2rem 0 0.6rem; }
-#trade-leadership .expertise-list { margin-top: 0.3rem; }
-#trade-leadership .expertise-list li { padding: 0.42rem 0 0.42rem 1.1rem; font-size: 0.92rem; }
+.flip-face-back .panel-inner { padding: clamp(1.8rem, 3vw, 2.6rem); }
+.flip-face-back .panel-head { margin-bottom: 1rem; }
+.flip-face-back .pull-quote { margin: 1rem 0 1.1rem; }
+.flip-face-back .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.75rem; }
+.flip-face-back .panel-sub { margin: 0.2rem 0 0.6rem; }
+.flip-face-back .expertise-list { margin-top: 0.3rem; }
+.flip-face-back .expertise-list li { padding: 0.42rem 0 0.42rem 1.1rem; font-size: 0.92rem; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LEADERSHIP FLIP CARD — quality front, trade back
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.flip-card {
+  position: relative;
+  width: min(720px, calc(100% - clamp(3rem, 8vw, 8rem)));
+  margin-left: clamp(1.5rem, 4vw, 4rem);
+  margin-right: auto;
+  perspective: 2000px;
+}
+.flip-card-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-face-back { transform: rotateY(180deg); }
+.flip-face .panel-inner {
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  /* 3D faces don't render backdrop-filter reliably, so the glass is baked in */
+  background: linear-gradient(180deg, rgba(20, 24, 30, 0.88), rgba(20, 24, 30, 0.8));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+/* Keep the headline clear of the flip button */
+.flip-card .panel-head { padding-right: 2.6rem; }
+.flip-toggle {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(15, 19, 25, 0.55);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.flip-toggle:hover,
+.flip-toggle:focus-visible {
+  background: rgba(240, 90, 40, 0.85);
+  border-color: transparent;
+  outline: none;
+}
+.flip-toggle svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.6s ease;
+}
+.flip-card.is-flipped .flip-toggle svg { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner, .flip-toggle svg { transition: none; }
+}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CAPABILITIES — white-bg editorial table
@@ -1252,6 +1318,15 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
     border-radius: 0;
     box-shadow: none;
   }
+
+  /* Flip card: full-bleed on phones, button tucked into the card corner */
+  .flip-card {
+    width: 100%;
+    margin: 0;
+  }
+  .flip-face .panel-inner { padding: 1.5rem 1.25rem; }
+  .flip-card .panel-head { padding-right: 2.4rem; }
+  .flip-toggle { top: 0.9rem; right: 0.9rem; }
   .panel-head {
     font-size: clamp(1.6rem, 7.5vw, 2.1rem);
     margin-bottom: 0.7rem;
