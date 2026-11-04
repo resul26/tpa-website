@@ -796,16 +796,16 @@ html.no-snap .scroll-container { scroll-snap-type: none; }
 }
 
 /* Leadership panel — denser rhythm keeps the box inside the viewport */
-.flip-face-back .panel-inner { padding: clamp(1.8rem, 3vw, 2.6rem); }
-.flip-face-back .panel-head { margin-bottom: 1rem; }
-.flip-face-back .pull-quote { margin: 1rem 0 1.1rem; }
-.flip-face-back .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.75rem; }
-.flip-face-back .panel-sub { margin: 0.2rem 0 0.6rem; }
-.flip-face-back .expertise-list { margin-top: 0.3rem; }
-.flip-face-back .expertise-list li { padding: 0.42rem 0 0.42rem 1.1rem; font-size: 0.92rem; }
+.flip-face-front .panel-inner { padding: clamp(1.8rem, 3vw, 2.6rem); }
+.flip-face-front .panel-head { margin-bottom: 1rem; }
+.flip-face-front .pull-quote { margin: 1rem 0 1.1rem; }
+.flip-face-front .panel-inner p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.75rem; }
+.flip-face-front .panel-sub { margin: 0.2rem 0 0.6rem; }
+.flip-face-front .expertise-list { margin-top: 0.3rem; }
+.flip-face-front .expertise-list li { padding: 0.42rem 0 0.42rem 1.1rem; font-size: 0.92rem; }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   LEADERSHIP FLIP CARD — quality front, trade back
+   LEADERSHIP FLIP CARD — trade front, quality back
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .flip-card {
   position: relative;
